@@ -1,21 +1,17 @@
-import java.util.*;
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        Map<String, List<String>> group = new HashMap<>();
-        
-        for(String str : strs){
-            char[] word_char = str.toCharArray();
-            Arrays.sort(word_char);
-            String key = new String(word_char);
-            
-            // If key empty, start new List
-            if(!group.containsKey(key))
+        Map<String, List<String>> exist = new HashMap<>();
+        for(String word: strs)
+        {
+            char[] wordInChar = word.toCharArray();
+            Arrays.sort(wordInChar);
+            String key = new String(wordInChar);
+            if(!exist.containsKey(key))
             {
-                group.put(key, new ArrayList<>());
+                exist.put(key, new ArrayList<>());
             }
-
-            (group.get(key)).add(str);
+            (exist.get(key)).add(word);
         }
-        return new ArrayList<>(group.values());
+        return new ArrayList<>(exist.values());
     }
 }
